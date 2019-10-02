@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-
 const PORT = process.env.PORT || 5000
 
 express()
@@ -16,4 +15,6 @@ express()
   .get('/save-load.ejs', (req, res) => res.render('save-load'))
   .get('/knn.ejs', (req, res) => res.render('knn'))
   .get('/knn-model.ejs', (req, res) => res.render('knn-model'))
+  .get('/running.ejs', (req, res) => res.render('running'))
+  .get('/flappy.ejs', (req, res) => res.render('flappy'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
