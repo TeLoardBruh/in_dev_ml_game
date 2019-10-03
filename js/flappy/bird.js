@@ -1,36 +1,53 @@
 function Bird() {
-    this.y = height / 2;
-    this.x = 64;
-  
-    this.gravity = 0.6;
-    this.lift = -15;
-    this.velocity = 0;
-  
-    this.show = function() {
-      fill(255);
-      noStroke();
-      ellipse(this.x, this.y, 32, 32);
+
+  this.x = 15;
+  this.y = height / 2;
+  this.image = loadImage("assets/bird.png");
+  this.gravity = 0.9;
+  this.velocity = 0;
+  this.hasFallen = false;
+  this.upThrust = -10;
+  this.rotation = 0;
+  this.angle = 0.03;
+  this.display = function () {
+    push();
+    translate(this.x, this.y);
+    rotate(-this.rotation * PI);
+    image(this.image, 0, 0, 75, 75);
+    if (this.rotation >= this.angle) {
+      this.rotation -= this.angle;
     }
-  
-    this.up = function() {
-      this.velocity += this.lift;
-    }
-  
-    this.update = function() {
-      this.velocity += this.gravity;
-      this.velocity *= 0.9;
-      this.y += this.velocity;
-  
-      if (this.y > height) {
-        this.y = height;
-        this.velocity = 0;
-      }
-  
-      if (this.y < 0) {
-        this.y = 0;
-        this.velocity = 0;
-      }
-  
-    }
-  
+    pop();
   }
+
+
+  this.update = function () {
+    if (!this.hasFallen) {
+      this.velocity += this.gravity;
+      this.y += this.velocity;
+    }
+  }
+
+  this.hasHitEdge = function () {
+    if (this.y > height) {
+      this.velocity = 0;
+      this.hasFallen = true;
+      return true;
+    } else if (this.y < 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  this.up = function () {
+    this.velocity = this.upThrust;
+    this.rotation = 0.3;
+    // this.velocity = 0;
+  }
+
+
+
+
+
+}

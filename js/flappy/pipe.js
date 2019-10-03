@@ -1,48 +1,48 @@
-function Pipe() {
 
-    var spacing = random(50, height / 2);
-    var centery = random(spacing, height - spacing);
-  
-    this.top = centery - spacing / 2;
-    this.bottom = height - (centery + spacing / 2);
-    this.x = width;
-    this.w = 50;
-    this.speed = 2;
-  
-    this.highlight = false;
-  
-    this.hits = function(bird) {
-      if (bird.y < this.top || bird.y > height - this.bottom) {
-        if (bird.x > this.x && bird.x < this.x + this.w) {
-          this.highlight = true;
-          return true;
-        }
-      }
-      this.highlight = false;
-      return false;
-    }
-  
-    this.show = function() {
-      noStroke();
-      fill(255);
-      if (this.highlight) {
-        fill(255, 0, 0);
-      }
-      rect(this.x, 0, this.w, this.top);
-      rect(this.x, height - this.bottom, this.w, this.bottom);
-    }
-  
-    this.update = function() {
-      this.x -= this.speed;
-    }
-  
-    this.offscreen = function() {
-      if (this.x < -this.w) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  
-  
+function Pipe(speed) {
+  this.x = width;
+  this.speed = speed;
+  this.gap = 180;
+  this.width = 60;
+  this.topY = random(0, height-this.gap+10);
+  this.bottomY = this.topY + this.gap;
+
+
+  this.display = function() {
+    fill(46, 139, 87);
+    // draws the top pipe
+    rect(this.x, 0, this.width, this.topY)
+
+    // bottom pipe
+    rect(this.x, this.bottomY,this.width, height-this.bottomY);
   }
+
+  this.update = function() {
+    console.log(this.speed);
+    this.x -= this.speed;
+  }
+
+  this.isOffScreen = function() {
+    if (this.x < -this.width) {
+      return true;
+    }
+    return false;
+  }
+
+  this.increaseSpeed = function() {
+    this.speed = this.speed + 1;
+  }
+
+
+  this.hasCollided = function(birdy) {
+
+    if (birdy.y <= this.topY || birdy.y >= this.bottomY) {
+      if(birdy.x >= this.x && birdy.x <= this.x + this.width) {
+        return true;
+      }
+    }
+    return false;
+
+  }
+
+}
