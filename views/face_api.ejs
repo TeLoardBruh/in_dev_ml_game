@@ -1,0 +1,31 @@
+<%include header.ejs%>
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* make canvas to see top of face  */
+    canvas {
+        position: absolute;
+    }
+</style>
+
+
+<video id="video" width="720" height="560" autoplay muted> </video>
+
+
+<script defer src="../js/face_api/main.js"></script>
+
+
+<!-- lib -->
+<script src="../js/face_api/face-api.min.js"></script>
+
+<%include footer.ejs%>
