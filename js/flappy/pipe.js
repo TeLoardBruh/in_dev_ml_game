@@ -18,7 +18,7 @@ function Pipe(speed) {
   }
 
   this.update = function() {
-    console.log(this.speed);
+    // console.log(this.speed);
     this.x -= this.speed;
   }
 
