@@ -8,7 +8,7 @@ var mic;
 var sliderTop;
 var sliderBottom;
 function setup() {
-  createCanvas(1024, 576);
+  createCanvas(600, 450)
   bg = loadImage("assets/background.png");
   bird = new Bird();
   score = new Score();
