@@ -92,7 +92,7 @@ function faceRecon() {
             // document.getElementById("demo").innerHTML = txt;
         }
         
-    }, 200);
+    }, 100);
 }
 
 
