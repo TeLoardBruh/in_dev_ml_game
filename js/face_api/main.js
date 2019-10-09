@@ -1,5 +1,12 @@
 let video = document.getElementById("video")
 let txt = '';
+var myArray = [
+    "😀",
+    "😔",
+    "😡",
+    "🤢",
+    "😲",
+];
 
 // call promise to all obj in webcam
 
@@ -27,8 +34,6 @@ function startvideo() {
 // add event listener
 // syntax "method" , function
 video.addEventListener('play', faceRecon)
-
-
 
 function faceRecon() {
     console.log('up and running model');
@@ -60,51 +65,25 @@ function faceRecon() {
         faceapi.draw.drawFaceExpressions(canvas, showResize)
         // console.log(detection[0].expressions.happy);
         // if esle for printing out the express that we match
-        // console.log(detection[0]);
-        if (detection[0].expressions.happy > 0.80) {
-            console.log("this is happy detection 😀");
-            // txt += "The emoji is 😀 " + "<br>";
-            // document.getElementById("myCanvas").innerHTML = txt;
+        var myArrayEx = [
+            detection[0].expressions.happy,
+            detection[0].expressions.sad,
+            detection[0].expressions.angry,
+            detection[0].expressions.disgusted,
+            detection[0].expressions.surprised,
+        ];
 
+        for(var i = 0; i < myArrayEx.length; i++){
+        if (myArrayEx[i] > 0.80 ) {
+            document.getElementById("demo").innerHTML = myArray[i];
         }
-        if (detection[0].expressions.sad > 0.80) {
-            console.log("this is sad detection 😔");
-
-            // txt += "The emoji is 😔 " + "<br>";
-            // document.getElementById("demo").innerHTML = txt;
-        }
-        if (detection[0].expressions.angry > 0.80) {
-            console.log("this is angry detection 😡");
-
-            // txt += "The emoji is 😡 " + "<br>";
-            // document.getElementById("demo").innerHTML = txt;
-        }
-        if (detection[0].expressions.disgusted > 0.80) {
-            console.log("this is disgusted detection 🤢");
-
-            // txt += "The emoji is 🤢 " + "<br>";
-            // document.getElementById("demo").innerHTML = txt;
-        }
-        if (detection[0].expressions.surprised > 0.80) {
-            console.log("this is surprised detection 😲");
-
-            // txt += "The emoji is 😲 " + "<br>";
-            // document.getElementById("demo").innerHTML = txt;
-        }
-        
-    }, 100);
+    } 
+    }, 200);
 }
 
 
 function randomEm() {
-    var myArray = [
-        "😀",
-        "😔",
-        "😡",
-        "🤢",
-        "😲",
-    ];
-    console.log(myArray);
+
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     document.getElementById("randomEm").innerHTML = randomItem;

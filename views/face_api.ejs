@@ -1,10 +1,28 @@
 <%include header.ejs%>
 
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* make canvas to see top of face  */
+    canvas {
+        position: absolute;
+    }
+</style>
+
+
 <video id="video" width="720" height="560" autoplay muted> </video>
 <!-- <button onclick="loopEmo()">Try it</button> -->
 
-<p id="demo"></p>
+<h1 id="demo"></h1>
 
 
 <h1 id="randomEm"></h1>
@@ -15,7 +33,16 @@
 <script defer src="../js/face_api/emoji.js"></script>
 <!-- main -->
 <script defer src="../js/face_api/main.js"></script>
+<script>
+    var expression = document.getElementById("demo");
+    var emoji = document.getElementById("randomEm");
+    console.log(expression);
+    console.log(emoji);
+    if(expression > 0.8 ){
+        console.log("succ");
+    }
 
+</script>
 
 
 
